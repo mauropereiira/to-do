@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+    <title>To-Do List</title>
+</head>
+<body>
+    <div class="container">
+        <h2>My To-Do List</h2>
+        <form id="addTaskForm">
+            <input type="text" id="taskContent" placeholder="New Task" required>
+            <button type="submit">Add</button>
+        </form>
+        <ul id="taskList">
+            {% for todo in todos %}
+                <li data-id="{{ todo.id }}">
+                    <span class="task-content">{{ todo.content }}</span>
+                    <button class="edit-btn">Edit</button>
+                    <button class="delete-btn">Delete</button>
+                </li>
+            {% endfor %}
+        </ul>
+        <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+</body>
+</html>
